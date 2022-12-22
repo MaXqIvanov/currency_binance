@@ -1,0 +1,17 @@
+/**
+ * src/styles/settings.scss
+ *
+ * Configures SASS variables and Vuetify overwrites
+ */
+
+// https://next.vuetifyjs.com/features/sass-variables/`
+// @use 'vuetify' with (
+//   $color-pack: false
+// );
+.v-theme--darkTheme {
+  background-color: #161b22;
+  color: white;
+}
+html {
+  overflow-y: auto;
+}
