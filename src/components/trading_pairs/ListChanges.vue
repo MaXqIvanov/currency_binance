@@ -26,9 +26,13 @@
 import emitter from "tiny-emitter/instance";
 import { onMounted, ref, watch } from "vue";
 let messages: any = ref([]);
-emitter.on("update-messages", (current_messages: string[]) => {
-  messages.value = [...current_messages];
-});
+emitter.on(
+  "update-messages",
+  (current_messages: string[], current_pair: string) => {
+    console.log(current_pair);
+    messages.value = [...current_messages];
+  }
+);
 // watch(messages, () => {
 //   console.log(messages.value);
 // });
