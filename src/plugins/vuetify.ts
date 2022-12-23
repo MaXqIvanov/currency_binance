@@ -15,7 +15,8 @@ const darkTheme = {
   dark: true,
   colors: {
     background: "#0d1117",
-    surface: "yellow",
+    "on-surface-variant": "#161b2200",
+    surface: "#161b2200",
     primary: "#6200EE",
     "primary-darken-1": "#3700B3",
     secondary: "#03DAC6",

@@ -2,7 +2,7 @@
   <div class="header">
     <v-toolbar dark prominent>
       <v-toolbar-title>Currency Binance</v-toolbar-title>
-      <v-spacer></v-spacer>
+      <v-spacer class="spacer"></v-spacer>
       <div v-for="item in items" :key="item.id" class="header__menu__desktop">
         <v-btn @click="navHeader(item.navigate)"> {{ item.title }} </v-btn>
       </div>
@@ -47,7 +47,12 @@ const navHeader = (navigate: string) => {
   router.push(navigate);
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+.spacer {
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
 .header__menu__desktop {
   display: none;
   @media (min-width: 601px) {
