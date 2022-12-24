@@ -41,7 +41,7 @@ html {
 .table {
   position: relative;
   width: 54vw;
-  border: 2px solid rgb(255, 255, 255);
+  background-color: #17171a;
   border-radius: 5px;
   box-sizing: border-box;
 
@@ -59,13 +59,12 @@ html {
   display: flex;
   justify-content: space-between;
   padding: 10px 10px;
-  border-bottom: 1px solid white;
+  // border-bottom: 1px solid white;
 }
 .head__column {
   width: 33vw;
-  text-align: center;
+  text-align: left;
   overflow: hidden;
-
   @media (max-width: 600px) {
     width: 50vw;
     &:nth-child(3) {

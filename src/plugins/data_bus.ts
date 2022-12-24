@@ -9,7 +9,11 @@ export default {
       if (messages.length === 0) {
         messages.push(`diff: значение BTCUSDT было изменено на ${arg}`);
       } else {
-        messages.push(`diff: значение ${current_pair} было изменено на ${arg}`);
+        if (current_pair !== arg) {
+          messages.push(
+            `diff: значение ${current_pair} было изменено на ${arg}`
+          );
+        }
       }
       current_pair = arg;
       emitter.emit("update-messages", messages, current_pair);
@@ -19,9 +23,15 @@ export default {
       console.log("get message");
       emitter.emit("update-messages", messages, current_pair);
     });
+    // get pair
     emitter.on("get-pair", function () {
       console.log("get pair");
       emitter.emit("update-pair", current_pair);
+    });
+    // change value
+    emitter.on("diff_value", function (message: string) {
+      messages.push(`diff: ${message}`);
+      emitter.emit("update-messages", messages, current_pair);
     });
   },
 };
