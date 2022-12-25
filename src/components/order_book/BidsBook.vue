@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="(bid, index) in keys_bids" :key="bid">
-      <div class="row body__row" id="start_bid">
+      <div class="row body__row" id="start_bid" v-if="Number(bid) >= 0">
         <div class="column row__column" style="color: #16c281">
           {{ Number(bid) * 1 }}
         </div>
