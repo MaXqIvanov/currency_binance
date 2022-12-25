@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="(ask, index) in keys_asks" :key="ask">
-      <div class="row body__row">
+      <div class="row body__row" v-if="Number(ask) >= 0">
         <div class="column row__column" style="color: #ff0000">
           {{ Number(ask) * 1 }}
         </div>
