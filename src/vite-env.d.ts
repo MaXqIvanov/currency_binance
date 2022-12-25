@@ -6,3 +6,6 @@ declare module "*.vue" {
   export default component;
 }
 declare module "tiny-emitter/instance";
+declare module "lodash/cloneDeep";
+declare module "@vueuse/core";
+declare module "vue-virtual-scroller";

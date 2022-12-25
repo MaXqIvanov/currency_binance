@@ -1,15 +1,13 @@
 <template>
   <v-row align="center" class="d-flex justify-center">
     <v-col cols="12" sm="6" class="d-flex" style="flex-direction: column">
-      <v-card class="flex-grow">
+      <v-card class="flex-grow list__changes">
         <v-list-item
           v-for="(message, index) in messages"
           :key="message + index"
         >
-          <v-list-item-content>
-            <v-list-item-title class="list_item">{{
-              message
-            }}</v-list-item-title>
+          <v-list-item-content class="list_item">
+            {{ message }}
           </v-list-item-content>
         </v-list-item>
         <v-list-item v-if="messages.length === 0">

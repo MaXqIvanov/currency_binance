@@ -8,6 +8,9 @@
 // @use 'vuetify' with (
 //   $color-pack: false
 // );
+html {
+  scroll-behavior: smooth;
+}
 *::-webkit-scrollbar {
   width: 5px; /* ширина scrollbar */
   height: 5px;
@@ -125,11 +128,12 @@ html {
   }
 }
 .row__column {
+  height: 30px;
   width: 33%;
   padding: 2px 4px;
   overflow: hidden;
   padding: 5px 10px;
-
+  box-sizing: border-box;
   @media (max-width: 600px) {
     width: 50%;
     &:nth-child(3) {
@@ -162,4 +166,9 @@ html {
       display: none;
     }
   }
+}
+
+.list__changes {
+  max-height: 60vh;
+  overflow-y: auto;
 }
