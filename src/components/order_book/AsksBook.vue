@@ -5,8 +5,8 @@
         <div class="column row__column" style="color: #ff0000">
           {{ Number(ask) * 1 }}
         </div>
-        <div class="column row__column">{{ asks[ask] * 1 }}</div>
-        <div class="column row__column">
+        <div class="column row__column" v-if="asks">{{ asks[ask] * 1 }}</div>
+        <div class="column row__column" v-if="asks">
           {{ (Number(ask) * asks[ask])?.toFixed(4) }}
         </div>
       </div>
@@ -16,8 +16,10 @@
 
 <script setup lang="ts">
 const props = defineProps({
-  keys_asks: Array,
-  asks: Object,
+  keys_asks: {
+    type: Object,
+  },
+  asks: { type: Object },
 });
 </script>
 

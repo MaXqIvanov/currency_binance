@@ -7,5 +7,5 @@ declare module "*.vue" {
 }
 declare module "tiny-emitter/instance";
 declare module "lodash/cloneDeep";
-declare module "@vueuse/core";
-declare module "vue-virtual-scroller";
+declare module "vue-virtual-scroll-list";
+declare module "vue-clusterize";

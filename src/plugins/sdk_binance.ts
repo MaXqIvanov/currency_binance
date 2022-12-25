@@ -3,8 +3,6 @@ import { App } from "vue";
 export default {
   install: (app: App) => {
     const getOrderBook = async (pair: string) => {
-      console.log(pair);
-      console.log("this is");
       const response = await axios.get(
         `https://api.binance.com/api/v3/depth?symbol=${pair}&limit=500`
       );

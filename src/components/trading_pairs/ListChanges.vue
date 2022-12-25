@@ -1,7 +1,10 @@
 <template>
   <v-row align="center" class="d-flex justify-center">
     <v-col cols="12" sm="6" class="d-flex" style="flex-direction: column">
-      <v-card class="flex-grow list__changes">
+      <v-card
+        class="flex-grow list__changes"
+        :style="{ overflowY: messages.length > 10 ? 'scroll' : 'auto' }"
+      >
         <v-list-item
           v-for="(message, index) in messages"
           :key="message + index"

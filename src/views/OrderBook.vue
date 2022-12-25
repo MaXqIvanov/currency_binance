@@ -8,8 +8,7 @@
       </div>
     </div>
   </div>
-
-  <!-- <div v-for="ask in asks" :key="ask">{{ ask }}</div> -->
+  <div v-if="isLoader" class="loader"></div>
 </template>
 
 <script lang="ts" setup>
@@ -19,11 +18,12 @@ import cloneDeep from "lodash/cloneDeep";
 import AsksBook from "@/components/order_book/AsksBook.vue";
 import BidsBook from "@/components/order_book/BidsBook.vue";
 import HeaderTable from "@/components/order_book/HeaderTable.vue";
-import { IAsks, IBids, IBuffet, IDataSocket } from "@/ts/types";
+import { IAsks, IBids, IDataSocket } from "@/ts/types";
 
 const current_pair = ref<string>("");
 const socket: any = ref(null);
 const isTable = ref<boolean>(true);
+const isLoader = ref<boolean>(false);
 
 const asks = ref<IAsks>({});
 const keys_asks = ref<string[]>([]);
@@ -47,8 +47,9 @@ emitter.on("update-pair", async (pair: string) => {
 
     socket.value.onopen = async function () {
       if (getOrderBook) {
+        isLoader.value = true;
         const response = await getOrderBook(pair);
-        console.log(response);
+        isLoader.value = false;
         const fullData = { ...response, asks: {}, bids: {} };
 
         response.data.asks.forEach((ask: string[]) => {
@@ -73,7 +74,6 @@ emitter.on("update-pair", async (pair: string) => {
 
     socket.value.onmessage = function (event: { data: string }) {
       let response: IDataSocket = JSON.parse(event.data);
-      console.log(asks.value);
       let asks_a: IAsks = cloneDeep(asks.value);
       let bids_b: IBids = cloneDeep(bids.value);
 
@@ -84,7 +84,7 @@ emitter.on("update-pair", async (pair: string) => {
         lastUpdateId.value + 1 <= response.u
       ) {
         buffer.value.forEach((element: any) => {
-          if (element.u <= lastUpdateId) {
+          if (lastUpdateId.value && element.u <= lastUpdateId.value) {
             if (Number(element[1]) === 0) {
               delete asks_a[element[0]];
             } else {
@@ -98,7 +98,10 @@ emitter.on("update-pair", async (pair: string) => {
       }
       if (lastUpdateId.value === null) {
         buffer.value.push(response);
-      } else if (exchangeEvent.value!.u + 1 === response.U) {
+      } else if (
+        exchangeEvent.value &&
+        exchangeEvent.value?.u + 1 === response.U
+      ) {
         response.a.forEach((element: string) => {
           if (Number(element[1]) === 0) {
             delete asks_a[element[0]];

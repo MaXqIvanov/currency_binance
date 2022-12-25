@@ -5,8 +5,8 @@
         <div class="column row__column" style="color: #16c281">
           {{ Number(bid) * 1 }}
         </div>
-        <div class="column row__column">{{ bids[bid] * 1 }}</div>
-        <div class="column row__column">
+        <div class="column row__column" v-if="bids">{{ bids[bid] * 1 }}</div>
+        <div class="column row__column" v-if="bids">
           {{ (Number(bid) * bids[bid])?.toFixed(4) }}
         </div>
       </div>
@@ -15,6 +15,18 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({ keys_bids: Array, bids: Object });
+const props = defineProps({ keys_bids: Object, bids: Object });
+const bigData = [
+  {
+    id: 1,
+  },
+  {
+    id: 2,
+  },
+];
 </script>
-<style scoped></style>
+<style lasng="scss">
+.rr-intersectionable--invisible .rr-heavy-part {
+  display: none;
+}
+</style>

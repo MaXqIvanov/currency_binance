@@ -1,6 +1,6 @@
 <template>
   <div class="head table__head">
-    <div class="column head__column">
+    <div class="column head__column" v-if="current_pair">
       Цена
       {{
         current_pair?.length >= 6
@@ -10,7 +10,7 @@
           : ""
       }}
     </div>
-    <div class="column head__column">
+    <div class="column head__column" v-if="current_pair">
       Количество
       {{
         current_pair?.length >= 6
