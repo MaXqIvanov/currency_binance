@@ -83,9 +83,9 @@ html {
   overflow-x: hidden;
   height: calc(100vh - 149px);
   max-height: calc(100vh - 149px);
-  width: calc(54vw - 5px);
+  width: calc(50vw - 5px);
   @media (min-width: 1500px) {
-    width: 40vw;
+    width: calc(40vw - 5px);
   }
   @media (max-width: 1000px) {
     width: calc(64vw - 5px);
@@ -122,9 +122,9 @@ html {
   border-left: 0px;
   border-right: 0px;
   overflow-y: auto;
-  width: calc(54vw - 5px);
+  width: calc(50vw - 5px);
   @media (min-width: 1500px) {
-    width: 40vw;
+    width: calc(40vw - 5px);
   }
   @media (max-width: 1000px) {
     width: calc(64vw - 5px);
