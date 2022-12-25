@@ -8,6 +8,9 @@
 // @use 'vuetify' with (
 //   $color-pack: false
 // );
+html {
+  scroll-behavior: smooth;
+}
 *::-webkit-scrollbar {
   width: 5px; /* ширина scrollbar */
   height: 5px;
@@ -40,11 +43,14 @@ html {
 }
 .table {
   position: relative;
-  width: 54vw;
+  width: 50vw;
   background-color: #17171a;
   border-radius: 5px;
   box-sizing: border-box;
 
+  @media (min-width: 1500px) {
+    width: 40vw;
+  }
   @media (max-width: 1000px) {
     width: 64vw;
   }
@@ -78,6 +84,9 @@ html {
   height: calc(100vh - 149px);
   max-height: calc(100vh - 149px);
   width: calc(54vw - 5px);
+  @media (min-width: 1500px) {
+    width: 40vw;
+  }
   @media (max-width: 1000px) {
     width: calc(64vw - 5px);
   }
@@ -114,6 +123,9 @@ html {
   border-right: 0px;
   overflow-y: auto;
   width: calc(54vw - 5px);
+  @media (min-width: 1500px) {
+    width: 40vw;
+  }
   @media (max-width: 1000px) {
     width: calc(64vw - 5px);
   }
@@ -125,11 +137,12 @@ html {
   }
 }
 .row__column {
+  height: 30px;
   width: 33%;
   padding: 2px 4px;
   overflow: hidden;
   padding: 5px 10px;
-
+  box-sizing: border-box;
   @media (max-width: 600px) {
     width: 50%;
     &:nth-child(3) {
@@ -161,5 +174,43 @@ html {
     &:nth-child(4) {
       display: none;
     }
+  }
+}
+
+.list__changes {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.loader {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 2px;
+  width: 5vw;
+  background: #84d1fd;
+  animation: infinite linear loader 0.6s;
+  z-index: 999999;
+}
+@keyframes loader {
+  0% {
+    width: 5vw;
+    transform: translateX(0vw);
+  }
+  25% {
+    width: 13vw;
+    transform: translateX(25vw);
+  }
+  50% {
+    width: 20vw;
+    transform: translateX(50vw);
+  }
+  75% {
+    width: 13vw;
+    transform: translateX(75vw);
+  }
+  100% {
+    width: 0vw;
+    transform: translateX(100vw);
   }
 }
