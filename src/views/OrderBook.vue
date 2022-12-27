@@ -48,6 +48,7 @@ emitter.on("update-pair", async (pair: string) => {
       if (getOrderBook) {
         isLoader.value = true;
         const response = await getOrderBook(pair);
+        lastUpdateId.value = response.data.lastUpdateId;
         isLoader.value = false;
         const fullData = { ...response, asks: {}, bids: {} };
 
@@ -61,14 +62,6 @@ emitter.on("update-pair", async (pair: string) => {
         fullData.bids = await getKeysSort(fullData.bids, 1);
         asks.value = fullData.asks;
         bids.value = fullData.bids;
-        lastUpdateId.value = response.data.lastUpdateId;
-        console.log("lastUpdateId");
-        setTimeout(function () {
-          let elem_bid = document.getElementById("start_bid");
-          if (elem_bid) {
-            elem_bid.scrollIntoView({ block: "center" });
-          }
-        }, 100);
       }
     };
 
