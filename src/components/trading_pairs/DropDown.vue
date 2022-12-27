@@ -1,5 +1,4 @@
 <template>
-  <!-- <div @click="emitter.emit('choose-pair', { number: 1 })">drop_down</div> -->
   <v-row align="center" class="d-flex justify-center">
     <v-col class="d-flex" cols="12" sm="6">
       <v-select

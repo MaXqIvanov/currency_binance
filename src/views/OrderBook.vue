@@ -1,6 +1,6 @@
 <template>
   <div class="table-responsive">
-    <div class="table" @mouseenter="mouseOnTable" @mouseleave="mouseOutTable">
+    <div class="table">
       <HeaderTable :current_pair="current_pair" />
       <div class="body table__body">
         <AsksBook :asks="asks" :keys_asks="keys_asks" />
@@ -22,7 +22,6 @@ import { IAsks, IBids, IDataSocket } from "@/ts/types";
 
 const current_pair = ref<string>("");
 const socket: any = ref(null);
-const isTable = ref<boolean>(true);
 const isLoader = ref<boolean>(false);
 
 const asks = ref<IAsks>({});
@@ -63,10 +62,11 @@ emitter.on("update-pair", async (pair: string) => {
         asks.value = fullData.asks;
         bids.value = fullData.bids;
         lastUpdateId.value = response.data.lastUpdateId;
+        console.log("lastUpdateId");
         setTimeout(function () {
-          let obj = document.getElementById("start_bid");
-          if (obj) {
-            obj.scrollIntoView({ block: "center" });
+          let elem_bid = document.getElementById("start_bid");
+          if (elem_bid) {
+            elem_bid.scrollIntoView({ block: "center" });
           }
         }, 100);
       }
@@ -76,13 +76,15 @@ emitter.on("update-pair", async (pair: string) => {
       let response: IDataSocket = JSON.parse(event.data);
       let asks_a: IAsks = cloneDeep(asks.value);
       let bids_b: IBids = cloneDeep(bids.value);
-
+      console.log("message");
       if (
         buffer.value.length > 0 &&
         lastUpdateId.value &&
         lastUpdateId.value + 1 >= response.U &&
         lastUpdateId.value + 1 <= response.u
       ) {
+        console.log("buffer");
+        console.log(buffer.value);
         buffer.value.forEach((element: any) => {
           if (lastUpdateId.value && element.u <= lastUpdateId.value) {
             if (Number(element[1]) === 0) {
@@ -150,11 +152,11 @@ emitter.on("update-pair", async (pair: string) => {
 
       asks.value = getKeysSort(asks_a, 2);
       bids.value = getKeysSort(bids_b, 1);
-      let obj = document.getElementById("start_bid");
-
-      if (obj && isTable.value === true) {
-        obj.scrollIntoView({ block: "center" });
-      }
+      // let elem_bids = document.getElementById("start_bid");
+      // let elem_asks = document.getElementsByClassName("asks_book");
+      // if (elem_bids && isTable.value === true) {
+      //   elem_bids.scrollIntoView({ block: "center" });
+      // }
       exchangeEvent.value = response;
     };
 
@@ -184,15 +186,8 @@ function getKeysSort(obj: IAsks | IBids, type: number) {
   keys.forEach((i) => (res[i] = obj[i]));
   return res;
 }
-const mouseOnTable = () => {
-  isTable.value = false;
-};
-const mouseOutTable = () => {
-  isTable.value = true;
-};
 onMounted(() => {
   emitter.emit("get-pair");
-  isTable.value = true;
 });
 onUnmounted(() => {
   emitter.off("update-pair");

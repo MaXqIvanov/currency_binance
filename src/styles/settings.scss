@@ -79,7 +79,8 @@ html {
   }
 }
 .table__body {
-  overflow-y: auto;
+  position: relative;
+  overflow-y: hidden;
   overflow-x: hidden;
   height: calc(100vh - 149px);
   max-height: calc(100vh - 149px);
@@ -110,12 +111,12 @@ html {
     border: 3px solid #84d1fd; /* padding вокруг плашки */
   }
 
-  &:hover {
-    &::-webkit-scrollbar {
-      width: 5px; /* ширина scrollbar */
-      height: 5px;
-    }
-  }
+  // &:hover {
+  //   &::-webkit-scrollbar {
+  //     width: 5px; /* ширина scrollbar */
+  //     height: 5px;
+  //   }
+  // }
 }
 .body__row {
   display: flex;
@@ -212,5 +213,60 @@ html {
   100% {
     width: 0vw;
     transform: translateX(100vw);
+  }
+}
+
+.asks_book {
+  position: absolute;
+  overflow-y: scroll;
+  max-height: 36.5vh;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0); /* цвет дорожки */
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #ac84fd00; /* цвет плашки */
+    border: 3px solid #84d1fd00; /* padding вокруг плашки */
+  }
+
+  &:hover {
+    &::-webkit-scrollbar-track {
+      background: rgb(255, 255, 255); /* цвет дорожки */
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #84d1fd; /* цвет плашки */
+      border: 3px solid #84d1fd; /* padding вокруг плашки */
+    }
+  }
+}
+.start_ask {
+  scroll-snap-align: start;
+}
+.bids_book {
+  position: absolute;
+  overflow-y: scroll;
+  max-height: 36.5vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0); /* цвет дорожки */
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #ac84fd00; /* цвет плашки */
+    border: 3px solid #84d1fd00; /* padding вокруг плашки */
+  }
+
+  &:hover {
+    &::-webkit-scrollbar-track {
+      background: rgb(255, 255, 255); /* цвет дорожки */
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #84d1fd; /* цвет плашки */
+      border: 3px solid #84d1fd; /* padding вокруг плашки */
+    }
   }
 }
